@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, url_for, render_template, abort
 from flask_modus import Modus
 from flask_sqlalchemy import SQLAlchemy
+from forms import UserForm, MessageForm
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = 'postgres://localhost/users-messages'
@@ -61,7 +62,8 @@ def index():
 
 @app.route('/users/new')
 def new():
-	return render_template('users/new.html')
+	user_form = UserForm()
+	return render_template('users/new.html', form=user_form)
 
 @app.route('/users/<int:id>/edit')
 def edit(id):
