@@ -56,10 +56,14 @@ def root():
 @app.route('/users', methods=['GET', "POST"])
 def index():
 	if request.method == "POST":
-		new_user = User(request.form['first_name'], request.form['last_name'])
-		db.session.add(new_user)
-		db.session.commit()
-		return redirect(url_for('index'))
+		form = UserForm(request.form)
+		if form.validate():
+			new_user = User(request.form['first_name'], request.form['last_name'])
+			db.session.add(new_user)
+			db.session.commit()
+			return redirect(url_for('index'))
+		else: 
+			return render_template('users/new.html', form=form)
 	return render_template('users/index.html', users=User.query.all())
 
 
