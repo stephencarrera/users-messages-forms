@@ -2,10 +2,13 @@ from flask import Flask, request, redirect, url_for, render_template, abort
 from flask_modus import Modus
 from flask_sqlalchemy import SQLAlchemy
 from forms import UserForm, MessageForm
+import os
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = 'postgres://localhost/users-messages'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+# be sure to add a key variable in $VIRTUAL_ENV/bin/postactivate
 
 modus = Modus(app)
 db=SQLAlchemy(app)
