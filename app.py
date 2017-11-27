@@ -4,20 +4,13 @@ from flask_sqlalchemy import SQLAlchemy
 from forms import UserForm, MessageForm, DeleteForm
 import os
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-	# be sure to add a key variable in $VIRTUAL_ENV/bin/postactivate
 
+app = Flask(__name__)
 
 if os.environ.get('ENV') == 'production':
-	app.config['DEBUG'] == False
-	app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL')
-	app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+	app.config.from_object('config.ProductionConfig')
 else:
-	app.config['DEBUG'] == True
-	app.config["SQLALCHEMY_DATABASE_URI"] = 'postgres://localhost/users-messages'
-	app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+	app.config.from_object('config.DevelopmentConfig')
 
 
 modus = Modus(app)
