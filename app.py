@@ -67,17 +67,22 @@ def index():
 			return render_template('users/new.html', form=form)
 	return render_template('users/index.html', users=User.query.all(), delete_form=delete_form)
 
+#create a new user
 
 @app.route('/users/new')
 def new():
 	user_form = UserForm()
 	return render_template('users/new.html', form=user_form)
 
+# edit a user
+
 @app.route('/users/<int:id>/edit')
 def edit(id):
 	found_user=User.query.get(id)
 	user_form = UserForm(obj=found_user)
 	return render_template('users/edit.html', user=found_user, form=user_form)
+
+# delete a user
 
 @app.route('/users/<int:id>', methods=["GET", "PATCH", "DELETE"])
 def show(id):
@@ -168,3 +173,4 @@ if __name__ == '__main__':
 
 
 
+# upload to heroku
