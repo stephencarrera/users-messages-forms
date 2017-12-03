@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, redirect, request, url_for, flash
-from project.users.models import User
-from project.messages.models import Message
+from project.models import User, Message
 from project.messages.forms import MessageForm, DeleteForm
 from project import db
 
