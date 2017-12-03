@@ -2,14 +2,39 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title> users-messages-forms-blueprints </title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<title>user-messages-forms</title>
+	<link rel="stylesheet" href="https://bootswatch.com/4/superhero/bootstrap.min.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {{ moment.include_moment() }}
 </head>
 <body>
-	
-{% block content %}
-	
-{% endblock %}
+	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+	  <a class="navbar-brand" href="{{url_for('users.index')}}">01-Blueprints</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	    <div class="navbar-nav">
+	      <a class="nav-item nav-link" href="{{url_for('users.index')}}">All Users</a>
+	      <a class="nav-item nav-link" href="{{url_for('users.new')}}">Add User</a>
+	      <!-- <a class="nav-item nav-link" href="#">Messages</a> -->
+	    </div>
+	  </div>
+	</nav>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				{% for message in messages %}
+				<p class='p-0 text-center text-white bg-success'>{{message}}</p>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+
+
+		{% block content %}
+		{% endblock %}
+
+		
+
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="

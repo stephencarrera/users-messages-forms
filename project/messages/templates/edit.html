@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Edit Your Message to {{message.user.first_name}}</h1>
+	<form method="POST" action="{{url_for('messages.show', user_id=message.user.id, id=message.id)}}?_method=PATCH">
+		{{form.hidden_tag()}}
+		{% for field in form if field.widget.input_type != 'hidden' %}
+			<p>
+				<!-- {{field.label}} -->
+				{{field(placeholder="Edit Your Message to "+message.user.first_name)}}
+				<br>
+				<span class='p-0 text-white bg-danger'>
+					{% if field.errors %}
+						{% for error in field.errors %}
+							{{ error }}
+						{% endfor %}
+					{% endif %}
+				</span>
+			</p>
+		{% endfor %}
+		<input type="submit" class="btn btn-primary btn-sm" value="submit">
+	</form>
+{% endblock %}
