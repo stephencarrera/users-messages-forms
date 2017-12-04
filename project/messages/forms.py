@@ -7,7 +7,7 @@ class MultiCheckboxField(SelectMultipleField):
     option_widget = widgets.CheckboxInput()
 
 class MessageForm(FlaskForm):
-	content=TextAreaField('Content', [validators.DataRequired(), validators.length(max=280)], render_kw={"rows": 3, "class": "col-6"})
+	content=TextAreaField('Content', [validators.DataRequired(), validators.length(max=280)], render_kw={"rows": 3, "class": "text-center col-6"})
 	tags = MultiCheckboxField('Tags', coerce=int)
 
 	def set_choices(self):

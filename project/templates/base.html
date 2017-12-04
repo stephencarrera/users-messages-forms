@@ -4,7 +4,6 @@
 	<meta charset="UTF-8">
 	<title>user-messages-forms</title>
 	<link rel="stylesheet" href="https://bootswatch.com/4/superhero/bootstrap.min.css">
-	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     {{ moment.include_moment() }}
 </head>
 <body>
@@ -17,7 +16,8 @@
 	    <div class="navbar-nav">
 	      <a class="nav-item nav-link" href="{{url_for('users.index')}}">All Users</a>
 	      <a class="nav-item nav-link" href="{{url_for('users.new')}}">Add User</a>
-	      <!-- <a class="nav-item nav-link" href="#">Messages</a> -->
+	      <a class="nav-item nav-link" href="{{url_for('tags.new')}}">Add Tag</a>
+	      <a class="nav-item nav-link" href="{{url_for('tags.index')}}">All Tags</a>
 	    </div>
 	  </div>
 	</nav>
